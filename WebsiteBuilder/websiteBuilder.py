@@ -15,6 +15,7 @@ actions_dir = "./pageParts/actions/"
 music_json = "music.json"
 
 music_section_template = ""
+music_description_page_template = ""
 
 insert_code = [ "<!-- ##",  "## -->" ]
 
@@ -25,8 +26,6 @@ snippet_code_html: dict = dict()
 
 
 def assemble_pages():
-
-    get_pages()
 
     make_action_snippets()
 
@@ -43,20 +42,22 @@ def get_pages():
         with open(f"{page_parts_dir}{file}", 'r') as f:
             page_html[file] = f.read()
 
-    
-
 
 
 def make_action_snippets():
-    global music_section_template
+    global music_section_template, music_description_page_template
 
-    with open(f"{actions_dir}musicSectionTemplate.html") as m_s_t_f:
-
+    with open(f"{actions_dir}musicSectionTemplate.html", 'r') as m_s_t_f:
         music_section_template = m_s_t_f.read()
 
-    make_navigation_snippet()
+    with open(f"{actions_dir}musicDescriptionPageTemplate.html", 'r') as m_s_t_f:
+        music_description_page_template = m_s_t_f.read()
 
     make_music_snippet()
+
+    get_pages()
+
+    make_navigation_snippet()
 
 
 
@@ -69,16 +70,27 @@ def make_music_snippet():
     music_snippet = ""
 
     for song in music_list:
+        song_page = music_description_page_template
+
         template = music_section_template
 
         template = template.replace("<!-- $$songTitle$$ -->", song["title"])
         template = template.replace("<!-- $$soundCloudEmbed$$ -->", build_embed(song["title"], song["embed_url"], song["song_url"]))
         template = template.replace("<!-- $$shortDescription$$ -->", song["short_description"])
 
+        song_page = song_page.replace("<!-- $$song$$ -->", template)
+        song_page = song_page.replace("<!-- $$fullDescription$$ -->", song["full_description"])
+        song_page_title = f"{song["clean_title"]}.html"
+
+        with open(f"{page_parts_dir}{song_page_title}", 'w') as f:
+            f.write(song_page)
+
+        assembled_page_path = f"{assembled_pages_dir}{song_page_title}"
+        template = template.replace("<!-- $$linkToDescriptionPage$$ -->", f"<a href=\"{assembled_page_path}\">Read more about <i>{song["title"]}</i> here!</a>\n")
+
         music_snippet += template
 
     snippet_code_html[snippet_name_to_code("musicSection")] = music_snippet
-
 
 
 
@@ -106,20 +118,26 @@ def build_embed(title: str, embed_url: str, song_url: str) -> str:
 
 
 
-
 def make_navigation_snippet():
     global snippet_code_html
     
     navigation_snippet = "<div class=\"navigation\">\n"
 
-    for page in page_html.keys():
-        navigation_snippet += f"<a href=\"./{page}\">{page.removesuffix(".html").title()}</a>\n"
+    title_to_path = {}
+
+    for page_title in page_html.keys():
+        title_to_path[page_title.removesuffix(".html").title()] = page_title
+
+    page_titles = list(title_to_path.keys())
+    page_titles.remove("Home")
+    page_titles.insert(0, "Home")
+    
+    for page_title in page_titles:
+        navigation_snippet += f"<a href=\"./{title_to_path[page_title]}\">{page_title}</a>\n"
 
     navigation_snippet += "</div>\n"
 
     snippet_code_html[snippet_name_to_code("navigation")] = navigation_snippet
-
-
 
 
 
@@ -137,13 +155,11 @@ def snippet_name_to_code(snippet: str) -> str:
 
 
 
-
 def insert_snippets_into_pages():
 
     for page in page_html.keys():
         with open(f"{assembled_pages_dir}{page[:-5]}.html", 'w') as f:
             f.write(insert_snippets(page_html[page]))
-
 
 
 
@@ -159,8 +175,6 @@ def insert_snippets(template: str) -> str:
         assembled_page = assembled_page.replace(snippet_code, snippet_code_html[snippet_code])
 
     return insert_snippets(assembled_page) if inserted_snippet else assembled_page
-
-
 
 
 

@@ -34,6 +34,8 @@ header {
     max-width: 1fr;
 
     z-index: 1000;
+
+    border-style: none none solid none;
 }
 
 
@@ -166,6 +168,7 @@ h4 {
 
 a {
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 
@@ -207,8 +210,6 @@ img:hover {
 }
 
 .navigation a {
-    text-decoration: none;
-    
     font-size: 3vh;
     font-weight: bold;
 
@@ -316,6 +317,12 @@ img:hover {
     align-items: center;
     flex-direction: column;
     text-wrap: pretty;
+}
+
+
+
+.spacer {
+    margin-top: 5vh;
 }
 
 
