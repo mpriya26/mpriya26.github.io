@@ -17,8 +17,8 @@
     --M_O_7: #E5E9F0FF;
     --M_O_8: #4C566AFF;
 
-    --primary-color: var(--M_O_7);
-    --secondary-color: var(--M_O_primary);
+    --primary-color: var(#2E3828FF);
+    --secondary-color: #FBCAEFFF;
 }
 
 
@@ -112,8 +112,6 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 20vh;
-    margin: 5vh auto;
 }
 
 
@@ -147,6 +145,7 @@ p, li {
 
 h1 {
     font-size: 8em;
+    margin: 1vh 0;
 }
 
 
@@ -230,9 +229,8 @@ img:hover {
 
 
 .social-links a {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    font-size: 5vw;
+    color: var(--primary-color);
+    font-size: 3vw;
     flex: 1;
     width: auto;
     height: auto;
