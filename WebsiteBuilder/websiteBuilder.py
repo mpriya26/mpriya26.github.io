@@ -73,7 +73,7 @@ def make_music_snippet():
 
         template = template.replace("<!-- $$songTitle$$ -->", song["title"])
         template = template.replace("<!-- $$soundCloudEmbed$$ -->", build_embed(song["title"], song["embed_url"], song["song_url"]))
-        template = template.replace("<!-- $$description$$ -->", f"This is a description for {song["title"]}")
+        template = template.replace("<!-- $$shortDescription$$ -->", song["short_description"])
 
         music_snippet += template
 
@@ -128,7 +128,7 @@ def get_snippets():
 
     for file in filter(lambda file: file.endswith('.html'), os.listdir(snippets_dir)):
         with open(f"{snippets_dir}{file}", 'r') as f:
-            snippet_code_html[snippet_name_to_code(file.removesuffix(".html"))] = insert_snippets(f.read())
+            snippet_code_html[snippet_name_to_code(file.removesuffix(".html"))] = f.read()
 
 
 
@@ -148,13 +148,17 @@ def insert_snippets_into_pages():
 
 
 def insert_snippets(template: str) -> str:
-        
+
+    inserted_snippet = False    
+    
     assembled_page = template
 
     for snippet_code in snippet_code_html.keys():
+        inserted_snippet = True if assembled_page.find(snippet_code) >= 0 else inserted_snippet
+        
         assembled_page = assembled_page.replace(snippet_code, snippet_code_html[snippet_code])
 
-    return assembled_page
+    return insert_snippets(assembled_page) if inserted_snippet else assembled_page
 
 
 

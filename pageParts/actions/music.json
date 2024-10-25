@@ -4,12 +4,16 @@
         {
             "title": "asearchforgod?",
             "embed_url": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1941539339&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-            "song_url": "https://soundcloud.com/matangi-priya-522922640/asearchforgod"
+            "song_url": "https://soundcloud.com/matangi-priya-522922640/asearchforgod",
+            "short_description": "This is a description.",
+            "full_description": "This is a full description"
         },
         {
             "title": "when?",
             "embed_url": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1941541671&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-            "song_url": "https://soundcloud.com/matangi-priya-522922640/birds"
+            "song_url": "https://soundcloud.com/matangi-priya-522922640/birds",
+            "short_description": "This is another description.",
+            "full_description": "This is another full description"
         }
     ]
 }
