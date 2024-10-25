@@ -1,0 +1,364 @@
+
+:root {
+    /* Colors from https://github.com/material-ocean/Material-Ocean.git */
+
+    --M_O_primary: #0F111AFF;
+    --M_O_secondary: #00010AFF;
+    --M_O_accent: #FF4151FF;
+
+    --M_O_0: #3B4252FF;
+    --M_O_1: #BF616AFF;
+    --M_O_2: #A3BE8CFF;
+    --M_O_3: #EBCB8BFF;
+
+    --M_O_4: #B1A1C1FF;
+    --M_O_5: #B48EADFF;
+    --M_O_6: #88C0D0FF;
+    --M_O_7: #E5E9F0FF;
+    --M_O_8: #4C566AFF;
+
+    --primary-color: var(--M_O_7);
+    --secondary-color: var(--M_O_primary);
+}
+
+
+
+header {
+    position: fixed;
+    top: 0;
+
+    margin: 0;
+    padding: 0;
+    
+    width: 100%;
+    max-width: 1fr;
+
+    z-index: 1000;
+}
+
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+
+    margin: 0;
+    padding: 0;
+    
+    width: 100%;
+    max-width: 1fr;
+
+    z-index: 1000;
+}
+
+
+.footer-links {
+    background-color: var(--secondary-color);
+
+    margin: 0 auto;
+
+    width: 100%;
+    max-width: 1fr;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+
+.footer-links a {
+    text-decoration: none;
+    
+    font-size: 1vh;
+    font-weight: bold;
+
+    padding: 1vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    transition-duration: 0.4s;
+}
+
+a:hover {
+    color: var(--M_O_6);
+}
+
+
+
+.construction-notice {
+    margin: 0;
+    padding: 0;
+
+    color: var(--M_O_secondary);
+    background-color: var(--M_O_3);
+}
+
+
+
+body {
+    width: 1fr;
+    max-width: 1fr;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 20vh;
+    margin: 5vh auto;
+}
+
+
+
+p, h1, h2, h3, h4 {
+    color: var(--accent-color);
+}
+
+
+h1, h2, h3, h4 {
+    text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    margin: 4vh 0 1vh 0;
+}
+
+h4 {
+    margin: 1vh 0 1vh 0;
+}
+
+
+p, li {
+    text-align: justify;
+    font-weight: normal;
+    max-width: 40em;
+    font-size: 2em;
+}
+
+
+h1 {
+    font-size: 8em;
+}
+
+
+h2 {
+    font-size: 6em;
+}
+
+
+h3 {
+    font-size: 4em;
+}
+
+
+h4 {
+    font-size: 2em;
+}
+
+
+a {
+    color: var(--primary-color);
+}
+
+
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 5%;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+img:hover {
+    transform: scale(1.1);
+}
+
+
+
+.construction-notice h4 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.navigation {
+    background-color: var(--secondary-color);
+
+    margin: 0 auto;
+
+    width: 100%;
+    max-width: 1fr;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+.navigation a {
+    text-decoration: none;
+    
+    font-size: 3vh;
+    font-weight: bold;
+
+    padding: 1vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    transition-duration: 0.4s;
+}
+
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+
+.social-links a {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-size: 5vw;
+    flex: 1;
+    width: auto;
+    height: auto;
+    text-align: center;
+    padding: 1vw;
+    margin: 1vw;
+    border-radius: 1%;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background-color: var(--secondary-color);
+    color: var(--M_O_6);
+    animation: invert_colors 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes invert_colors {
+    0% {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+    }
+    100% {
+        background-color: var(--secondary-color);
+        color: var(--M_O_6);
+    }
+}
+
+
+.about-me {
+    width: 60vw;
+    margin: 0 auto;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+}
+
+
+.resume-pdf {
+    width: 40vw;
+    height: 50vw;
+    margin: 0 auto;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+}
+
+
+.picture-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: max-content;
+    gap: 20px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 90vw;
+}
+
+
+
+.social-links .grid-container {
+    grid-template-columns: repeat(auto-fit, 25vw);
+    grid-template-rows: auto;
+}
+
+
+
+.grid-item {
+    width: auto;
+    height: 100%;
+    max-width: 90vw;
+    max-height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-wrap: pretty;
+}
+
+
+
+/* For phones */
+@media (max-width: 800px) {
+    /* p {
+        font-size: 0.8rem;
+    } */
+    body {
+        font-size: 2vw;
+    }
+
+    .social-links .grid-container {
+        grid-template-rows: repeat(auto-fit);
+        grid-template-columns: auto;
+    }
+
+    .social-links .grid-container a {
+        font-size: 6vh;
+    }
+
+    .resume-pdf {
+        width: 90vw;
+        height: 100vw;
+    }
+    
+    .picture-section {
+        margin: 5px;
+    }
+
+    .grid-container {
+        grid-gap: 1vh;
+    }
+
+    .grid-item {
+        padding: 5px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
