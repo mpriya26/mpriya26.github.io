@@ -74,18 +74,21 @@ def make_music_snippet():
 
         template = music_section_template
 
-        template = template.replace("<!-- $$songTitle$$ -->", song["title"])
+        # template = template.replace("<!-- $$songTitle$$ -->", song["title"])
         template = template.replace("<!-- $$soundCloudEmbed$$ -->", build_embed(song["title"], song["embed_url"], song["song_url"]))
         template = template.replace("<!-- $$shortDescription$$ -->", song["short_description"])
 
         song_page = song_page.replace("<!-- $$song$$ -->", template)
-        song_page = song_page.replace("<!-- $$fullDescription$$ -->", song["full_description"])
-        song_page_title = f"{song["clean_title"]}.html"
+
+        with open(f"{actions_dir}{song["description_file_path"]}", 'r') as desc:
+            song_page = song_page.replace("<!-- $$fullDescription$$ -->", desc.read())
+        song_page_title = f"{song["title"].strip('?')}.html"
 
         with open(f"{page_parts_dir}{song_page_title}", 'w') as f:
             f.write(song_page)
 
         assembled_page_path = f"{assembled_pages_dir}{song_page_title}"
+        template = template.replace("<!-- $$songTitle$$ -->", f"<a href=\"{assembled_page_path}\"><i>{song["title"]}</i></a>\n")
         template = template.replace("<!-- $$linkToDescriptionPage$$ -->", f"<a href=\"{assembled_page_path}\">Read more about <i>{song["title"]}</i> here!</a>\n")
 
         music_snippet += template
